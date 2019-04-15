@@ -1,6 +1,7 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import ForecastSummary from '../../src/components/forecast-summary';
+import WeatherIcon from 'react-icons-weather';
 
 it('renders the date', () => {
   const wrapper = Enzyme.shallow((
@@ -11,7 +12,7 @@ it('renders the date', () => {
       icon="mockIcon"
     />
   ));
-  expect(wrapper.find('.forecast-summary__date').text()).toEqual('123');
+  expect(wrapper.find('.forecast-summary__date').text()).toEqual('Thu 1st January');
 });
 
 it('renders the temperature', () => {
@@ -44,9 +45,8 @@ it('renders an icon', () => {
       date={123}
       temperature={25}
       description="mockDescription"
-      icon="mockIcon"
+      icon={800}
     />
   ));
-
-  expect(wrapper.find('.forecast-summary__icon').text()).toEqual('mockIcon');
+  expect(wrapper.find('.forecast-summary__icon').node('iconId')).toEqual('800');
 });

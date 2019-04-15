@@ -28,3 +28,15 @@ it('renders the correct amount of ForecastSummary components', () => {
   ));
   expect(wrapper.find(ForecastSummary).length).toEqual(2);
 });
+
+it('passes the correct values from each forecast into each ForecastSummary', () => {
+  const wrapper = Enzyme.shallow((
+    <ForecastSummaries forecasts={forecasts} />
+  ));
+  wrapper.find(ForecastSummary).forEach((node, index) => {
+    expect(node.prop('date')).toEqual(forecasts[index].date);
+    expect(node.prop('description')).toEqual(forecasts[index].description);
+    expect(node.prop('icon')).toEqual(forecasts[index].icon);
+    expect(node.prop('temperature')).toEqual(forecasts[index].temperature.max);
+  });
+});
