@@ -12,7 +12,7 @@ const ForecastSummaries = props => (
           description={forecast.description}
           icon={forecast.icon}
           temperature={forecast.temperature.max}
-          onForecastSelect={props.onForecastSelect}
+          onSelect={props.onForecastSelect}
         />
       ))
     }

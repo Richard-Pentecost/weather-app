@@ -15,7 +15,7 @@ class App extends React.Component {
 
   handleForecastSelect = (date) => {
     this.setState({
-      selectedDate: parseInt(date.target.dataset.date),
+      selectedDate: date,
     });
   };
 
