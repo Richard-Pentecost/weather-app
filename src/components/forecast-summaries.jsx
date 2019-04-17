@@ -1,5 +1,6 @@
 import React from 'react';
 import ForecastSummary from './forecast-summary';
+import PropTypes from 'prop-types';
 import '../styles/forecast-summaries.scss';
 
 const ForecastSummaries = props => (
@@ -18,5 +19,9 @@ const ForecastSummaries = props => (
     }
   </div>
 );
+
+ForecastSummaries.propTypes = {
+  forecasts: PropTypes.array.isRequired,
+};
 
 export default ForecastSummaries;
