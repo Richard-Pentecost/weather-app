@@ -2,10 +2,11 @@ import React from 'react';
 import LocationDetails from './location-details';
 import ForecastSummaries from './forecast-summaries';
 import ForecastDetails from './forecast-details';
+import SearchForm from './search-form';
 import '../styles/app.scss';
 import axios from 'axios';
 
-const URL = 'https://mcr-codes-weather.herokuapp.com';
+const URL = 'https://mcr-codes-weather.herokuapp.com/forecast';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,15 +21,21 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    // console.log(this.state.location, 'city in state');
+    this.handleLocationSelect(this.state.location.city);
+  }
+
   handleForecastSelect = (date) => {
     this.setState({
       selectedDate: date,
     });
   };
 
-  componentDidMount() {
-    axios.get(`${URL}/forecast`)
+  handleLocationSelect = (location) => {
+    axios.get(`${URL}?city=${location}`)
       .then(response => {
+        // alert(`${URL}?city=${location}`);
         const data = response.data;
         this.setState({
           selectedDate: data.forecasts[0].date,
@@ -38,27 +45,35 @@ class App extends React.Component {
             country: data.location.country,
           },
         });
+        // console.log(this.state.location, 'city');
       })
       .catch(error => {
         console.log(error, 'error');
       });
-  }
+  };
+
 
   render() {
     const selectedForecast = this.state.forecasts.find(forecast => forecast.date === this.state.selectedDate);
     return (
       <div className="forecast">
-        { selectedForecast && (
-          <LocationDetails
-            city={this.state.location.city}
-            country={this.state.location.country}
-          />
-        )}
+        <LocationDetails
+          city={this.state.location.city}
+          country={this.state.location.country}
+        />
+        <br />
+        <SearchForm
+          onLocationSelect={this.handleLocationSelect}
+        />
+        <br />
+        <ForecastSummaries
+          forecasts={this.state.forecasts}
+          onForecastSelect={this.handleForecastSelect}
+        />
+        <br />
         {
-          selectedForecast && <ForecastSummaries forecasts={this.state.forecasts} onForecastSelect={this.handleForecastSelect} />
-        }
-        {
-          selectedForecast && <ForecastDetails forecast={selectedForecast} />
+          selectedForecast &&
+          <ForecastDetails forecast={selectedForecast} />
         }
       </div>
     );

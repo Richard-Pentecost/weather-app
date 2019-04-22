@@ -1,15 +1,16 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import '../styles/forecast-details.scss';
 
 const ForecastDetails = props => {
   return (
     <div className="forecast-details">
       <div className="forecast-details_date">{moment(props.forecast.date).format('ddd Do MMM')}</div>
-      <div className="forecast-details_max-temp">{props.forecast.temperature.max}</div>
-      <div className="forecast-details_min-temp">{props.forecast.temperature.min}</div>
-      <div className="forecast-details_humidity">{props.forecast.humidity}</div>
-      <div className="forecast-details_wind">{props.forecast.wind.speed}</div>
+      <div className="forecast-details_max-temp">Max Temperature: {props.forecast.temperature.max}</div>
+      <div className="forecast-details_min-temp">Min Temperature: {props.forecast.temperature.min}</div>
+      <div className="forecast-details_humidity">Humidity: {props.forecast.humidity}</div>
+      <div className="forecast-details_wind">Wind: {props.forecast.wind.speed}</div>
     </div>
   );
 };

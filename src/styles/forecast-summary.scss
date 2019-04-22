@@ -1,0 +1,13 @@
+button {
+  border: 0;
+  text-decoration: underline;
+  outline: none;
+  padding: 0;
+}
+
+.forecast-summary__icon {
+  font-size: 40px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
