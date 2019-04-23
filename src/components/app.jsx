@@ -22,7 +22,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.state.location, 'city in state');
     this.handleLocationSelect(this.state.location.city);
   }
 
@@ -35,7 +34,6 @@ class App extends React.Component {
   handleLocationSelect = (location) => {
     axios.get(`${URL}?city=${location}`)
       .then(response => {
-        // alert(`${URL}?city=${location}`);
         const data = response.data;
         this.setState({
           selectedDate: data.forecasts[0].date,
@@ -45,7 +43,6 @@ class App extends React.Component {
             country: data.location.country,
           },
         });
-        // console.log(this.state.location, 'city');
       })
       .catch(error => {
         console.log(error, 'error');

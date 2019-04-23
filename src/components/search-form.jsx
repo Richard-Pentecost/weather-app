@@ -14,19 +14,25 @@ class SearchForm extends React.Component {
     });
   };
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     this.props.onLocationSelect(this.state.searchText);
+    this.setState({
+      searchText: '',
+    });
   };
 
   render() {
     return (
       <div>
-        <input 
-          type="text" 
-          onChange={this.handleInputChange}
-          value={this.state.searchText}
-        />
-        <button onClick={this.handleSubmit}>Search</button>
+        <form>
+          <input
+            type="text"
+            onChange={this.handleInputChange}
+            value={this.state.searchText}
+          />
+          <button onClick={this.handleSubmit}>Search</button>
+        </form>
       </div>
     );
   }
