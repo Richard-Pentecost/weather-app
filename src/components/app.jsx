@@ -52,13 +52,21 @@ class App extends React.Component {
 
   render() {
     const selectedForecast = this.state.forecasts.find(forecast => forecast.date === this.state.selectedDate);
+
+    if (!selectedForecast) {
+      return (
+        <div className="loading">
+          <h1>Loading data...</h1>
+        </div>
+      );
+    }
+
     return (
       <div className="forecast">
         <LocationDetails
           city={this.state.location.city}
           country={this.state.location.country}
         />
-        <br />
         <SearchForm
           onLocationSelect={this.handleLocationSelect}
         />
