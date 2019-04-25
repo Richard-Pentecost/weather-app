@@ -18,6 +18,8 @@ class App extends React.Component {
         city: '',
         country: '',
       },
+      error: false,
+      errorLocation: '',
     };
   }
 
@@ -42,10 +44,15 @@ class App extends React.Component {
             city: data.location.city,
             country: data.location.country,
           },
+          errorLocation: '',
+          error: false,
         });
       })
-      .catch(error => {
-        console.log(error, 'error');
+      .catch(() => {
+        this.setState({
+          errorLocation: location,
+          error: true,
+        });
       });
   };
 
@@ -70,6 +77,7 @@ class App extends React.Component {
         <SearchForm
           onLocationSelect={this.handleLocationSelect}
         />
+        { this.state.error && <h4>{this.state.errorLocation} is not found</h4> }
         <br />
         <ForecastSummaries
           forecasts={this.state.forecasts}
