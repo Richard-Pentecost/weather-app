@@ -1,0 +1,14 @@
+.forecast-details {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.forecast-details_date, .forecast-details_wind, .forecast-details_max-temp, 
+.forecast-details_min-temp, .forecast-details_humidity {
+  margin: 5px 0;
+  text-align: center
+}
+
+.forecast-details_date {
+  font-size: 20px;
+}
